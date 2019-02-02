@@ -10,7 +10,7 @@ import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
 
 //#main-class
-object QuickstartServer extends App with UserRoutes {
+object QuickstartServer extends App with ProductRoutes {
 
   // set up ActorSystem and other dependencies here
   //#main-class
@@ -19,11 +19,11 @@ object QuickstartServer extends App with UserRoutes {
   implicit val materializer: ActorMaterializer = ActorMaterializer()
   //#server-bootstrapping
 
-  val userRegistryActor: ActorRef = system.actorOf(UserRegistryActor.props, "userRegistryActor")
+  val productRegistryActor: ActorRef = system.actorOf(ProductRegistryActor.props, "productRegistryActor")
 
   //#main-class
-  // from the UserRoutes trait
-  lazy val routes: Route = userRoutes
+  // from the ProductRoutes trait
+  lazy val routes: Route = productRoutes
   //#main-class
 
   //#http-server
